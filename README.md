@@ -11,7 +11,9 @@ Package included simple app example, webpack dev server with **riot hot reload**
 
 Just read https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md but replace all "react" word to "riot" :)
 
-[![See the video](https://j.gifs.com/VmEVBB.gif)](https://www.youtube.com/watch?v=dU2TsHzQA60)
+
+## In Action
+[![https://gyazo.com/0bb4629e545f72956a95a3b80fcba7e3](https://i.gyazo.com/0bb4629e545f72956a95a3b80fcba7e3.gif)](https://gyazo.com/0bb4629e545f72956a95a3b80fcba7e3)
 
 
 
