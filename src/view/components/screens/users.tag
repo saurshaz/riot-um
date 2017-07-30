@@ -60,6 +60,9 @@
 			}
 		}
 
+		this.addUserOrGroup = () => {
+			alert('... to do')
+		}
 
     this.on('mount', () => {
 			this.groupFilter=false
@@ -106,5 +109,18 @@
 					</section>
 		    </li>
 	    </ul>
+			<div class="fixed-action-btn toolbar">
+		    <a class="btn-floating btn-large red">
+		      <i class="large material-icons">add</i>
+		    </a>
+		    <ul onclick="{addUserOrGroup}">
+		      <li class="waves-effect waves-light">
+						<a href="#!"><i class="material-icons">group</i></a>
+					</li>
+		      <li class="waves-effect waves-light">
+						<a href="#!"><i class="material-icons">person</i></a>
+					</li>
+		    </ul>
+		  </div>
   </div>
 </main>

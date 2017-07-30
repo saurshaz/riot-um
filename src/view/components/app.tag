@@ -11,7 +11,8 @@ import route from 'riot-route'
 		  <nav class="top-nav">
 			<div class="nav-wrapper" style="z-index: 21;background-color: #ff5c69;position: fixed;height: 20%;width: 100%;">
 				<a href="#" data-activates="nav-mobile" style="z-index:20;position: fixed;" class="button-collapse top-nav waves-effect waves-light circle hide-on-large-only">
-					<i class="material-icons">menu</i>User Management</a>
+					<i class="material-icons">menu</i></a>
+					<section class="heading">User Management</section>
 				</div>
 		  </nav>
 	  	<div class="container" style="margin-top:24%">
