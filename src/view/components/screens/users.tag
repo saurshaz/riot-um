@@ -1,4 +1,8 @@
-<main>
+<main style="
+    width: 100%;
+    padding-left: 0px;
+    padding-top: 0px;
+">
 	<script type="es6">
     this.fetchData = () => {
 			if(this.masterList==='group'){
@@ -22,6 +26,37 @@
 			}
     }
 
+		// search users
+		this.doFilter = (e) => {
+			if (e.keyCode === 13) {
+				const term = e.target.value
+				if(term.length > 0){
+					let found = false;
+					this.users = this.users.filter((item, index) => {
+						if(this.masterList==='user'){
+							if(this.groupFilter){
+								return  ((item.first.toUpperCase().indexOf(term.toUpperCase())!== -1) || (item.last.toUpperCase().indexOf(term.toUpperCase())!== -1) || (item.name.toUpperCase().indexOf(term.toUpperCase())!== -1) || (item.groups.indexOf(term)!== -1))
+							} else {
+								return ((item.first.toUpperCase().indexOf(term.toUpperCase())!== -1) || (item.last.toUpperCase().indexOf(term.toUpperCase())!== -1) || (item.name.toUpperCase().indexOf(term.toUpperCase())!== -1))
+							}
+						} else {
+							return ((item.name.toUpperCase().indexOf(term.toUpperCase())!== -1) )
+						}
+					})
+					this.update()
+				} else {
+					if (this.masterList==='user' && this.users.length !== this.masterDataUsers.length){
+						this.users = this.masterDataUsers
+						this.update()
+					} else if (this.masterList==='group' && this.groups.length !== this.masterDataGroups.length){
+						this.groups = this.masterDataGroups
+						this.update()
+					}
+				}
+			}
+		}
+
+
     this.on('mount', () => {
 			this.groupFilter=false
 			this.masterList='user'
@@ -37,33 +72,11 @@
       this.fetchData()
     })
 
-		// search users
-		this.doFilter = (e) => {
-			if (e.keyCode === 13) {
-				const term = e.target.value
-				if(term.length > 0){
-					let found = false;
-					this.users = this.users.filter((item, index) => {
-						if(this.groupFilter){
-							return  ((item.first.toUpperCase().indexOf(term.toUpperCase())!== -1) || (item.last.toUpperCase().indexOf(term.toUpperCase())!== -1) || (item.name.toUpperCase().indexOf(term.toUpperCase())!== -1) || (item.groups.indexOf(term)!== -1))
-						} else {
-							((item.first.toUpperCase().indexOf(term.toUpperCase())!== -1) || (item.last.toUpperCase().indexOf(term.toUpperCase())!== -1) || (item.name.toUpperCase().indexOf(term.toUpperCase())!== -1))
-						}
-					})
-					this.update()
-				} else if (this.users.length !== this.masterDataUsers.length){
-					this.users = this.masterDataUsers
-					this.update()
-				}
-			}
-		}
 
   </script>
-
-  <div class="main main-screen" id="main-section" data-topbar="scroll">
-		<div class="search-wrapper card">
-			<input id="search" placeholder="Search users ... " style="position: fixed;top: 20px;z-index: 11;background-color: lightgray;width: 82%;padding-left: 2%;left: 8%;" onkeyup={doFilter}></div>
-	    <ul class="collection" if={masterList === 'user'}>
+	<input id="search" placeholder="Search users ... " style="position: fixed;top: 24%;z-index: 11;background-color: lightgray;width: 82%;padding-left: 2%;left: 8%;" onkeyup="{doFilter}">
+  <div class="main main-screen" id="main-section" data-topbar="scroll" style="margin-top: 10%;">
+			<ul class="collection" if={masterList === 'user'}>
 				<li each={item in users}  class="collection-item avatar">
 		      <img src="{item.image}" alt="" class="circle">
 		      <section>{item.first} {item.last}</section>
@@ -89,6 +102,5 @@
 					</section>
 		    </li>
 	    </ul>
-		</div>
   </div>
 </main>
