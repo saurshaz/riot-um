@@ -1,6 +1,8 @@
-# ⏏ create-riot-app
-[![Code Climate](https://codeclimate.com/github/alexstep/create-riot-app-ejected.png)](https://codeclimate.com/github/alexstep/create-riot-app-ejected)
-[![Dependencies](https://david-dm.org/alexstep/create-riot-app-ejected/dev-status.svg)](https://david-dm.org/alexstep/create-riot-app-ejected?type=dev)
+# ⏏ riot-um
+
+### Simple Riot App generated based on riot-cli
+Built to provide an interface to manage Users and Groups in an easy and fast way
+
 
 [RiotJS](https://github.com/riot/riot) startkit, based on [create-react-app](https://github.com/facebookincubator/create-react-app) and  [react-scripts](https://github.com/facebookincubator/create-react-app/tree/master/packages/react-scripts).
 
@@ -15,8 +17,8 @@ Just read https://github.com/facebookincubator/create-react-app/blob/master/pack
 
 ## ⚡ Start dev-server
 ```
-git clone https://github.com/alexstep/create-riot-app-ejected my-riot-app
-cd my-riot-app
+git clone https://github.com/saurshaz/riot-um
+cd riot-um
 ```
 ```
 npm install
@@ -68,22 +70,9 @@ Modify the ```.env``` file in the root of the generated project, and add any of 
 
 The generated project comes with LESS support by default, but you can add SASS or Stylus at any time by edit the options from the ```.env``` file.
 
-#### Styling
-- ```enable_less=true``` - enable LESS support
-- ```enable_sass=true``` - enable SASS support
-- ```enable_stylus=true``` - enable Stylus support
-
 #### Others
 - ```HTTPS=true``` - enable https in localhost
 - ```PORT=9999``` - change port
 - ```OPEN_BROWSER=false``` - don't open browser after running webpack server
 
 [Read more](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#adding-custom-environment-variables) about .env files
-
-
-
-## ☺ Contribute
-
-Fork and send pull-request. Thank you!
-
-
