@@ -11,7 +11,7 @@ import route from 'riot-route'
 				this.topbar_title = screen
 				this.update()
 
-				riot.mount(this.refs.mount_point, screen)
+				// riot.mount(this.refs.mount_point, screen)
 
 				App.view.topbarScrollHide()
 			})
@@ -25,7 +25,7 @@ import route from 'riot-route'
 			"><a class="page-title">User Management</a></div>
 		  </nav>
 	  	<div class="container" style="margin-top:24%">
-				<a href="#" data-activates="nav-mobile" class="button-collapse top-nav waves-effect waves-light circle hide-on-large-only">
+				<a href="#" data-activates="nav-mobile" style="z-index:20;" class="button-collapse top-nav waves-effect waves-light circle hide-on-large-only">
 						<i class="material-icons">menu</i>
 				</a>
 				<ul id="nav-mobile" class="side-nav" style="transform: translateX(-100%);">

@@ -32,17 +32,21 @@
 				const term = e.target.value
 				if(term.length > 0){
 					let found = false;
-					this.users = this.users.filter((item, index) => {
-						if(this.masterList==='user'){
+					if(this.masterList==='group'){
+						this.groups = this.masterDataGroups.filter((item, index) => {
+							return ((item.first.toUpperCase().indexOf(term.toUpperCase())!== -1) || (item.last.toUpperCase().indexOf(term.toUpperCase())!== -1) || (item.name.toUpperCase().indexOf(term.toUpperCase())!== -1))
+						})
+					} else if(this.masterList==='user'){
+						this.users = this.masterDataUsers.filter((item, index) => {
 							if(this.groupFilter){
 								return  ((item.first.toUpperCase().indexOf(term.toUpperCase())!== -1) || (item.last.toUpperCase().indexOf(term.toUpperCase())!== -1) || (item.name.toUpperCase().indexOf(term.toUpperCase())!== -1) || (item.groups.indexOf(term)!== -1))
 							} else {
 								return ((item.first.toUpperCase().indexOf(term.toUpperCase())!== -1) || (item.last.toUpperCase().indexOf(term.toUpperCase())!== -1) || (item.name.toUpperCase().indexOf(term.toUpperCase())!== -1))
 							}
-						} else {
-							return ((item.name.toUpperCase().indexOf(term.toUpperCase())!== -1) )
-						}
-					})
+						})
+					} else {
+						return ((item.name.toUpperCase().indexOf(term.toUpperCase())!== -1) )
+					}
 					this.update()
 				} else {
 					if (this.masterList==='user' && this.users.length !== this.masterDataUsers.length){
