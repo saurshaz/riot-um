@@ -5,13 +5,13 @@ import route from 'riot-route'
 		this.on('mount',()=>{
 			route((screen, action, other)=>{
 				if (!screen) {
-					screen = 'groups'
+					screen = 'main'
 				}
 
 				this.topbar_title = screen
 				this.update()
 
-				// riot.mount(this.refs.mount_point, screen)
+				riot.mount(this.refs.mount_point, screen)
 
 				App.view.topbarScrollHide()
 			})
@@ -30,7 +30,7 @@ import route from 'riot-route'
 						<i class="material-icons">menu</i>
 				</a>
 				<ul id="nav-mobile" class="side-nav" style="transform: translateX(-100%);">
-			    <li class="bold"><a href="main?groups=filter" class="waves-effect waves-teal">Groups<span class="badge">12</span></a></li>
+			    <li class="bold"><a href="main?group=true" class="waves-effect waves-teal">Groups<span class="badge">12</span></a></li>
 			    <li class="bold"><a href="main" class="waves-effect waves-teal">Users<span class="badge"> 121 </span></a></li>
 			    <li class="bold"><a href="main" class="waves-effect waves-teal">Advanced Search<span class="new badge"></span></a></li>
 			  </ul>

@@ -1,19 +1,38 @@
 <main>
 	<script type="es6">
     this.fetchData = () => {
-      fetch(`/data/users.json`)
-        .then((resp) => resp.json()) // Transform the data into json
-        .then((data) => {
+			if(this.masterList==='group'){
+				fetch(`/data/groups.json`)
+					.then((resp) => resp.json()) // Transform the data into json
+					.then((data) => {
+						this.masterDataGroups = data
+						this.groups = data
+						this.masterList = 'group'
+						this.update()
+					})
+			} else {
+				fetch(`/data/users.json`)
+					.then((resp) => resp.json()) // Transform the data into json
+					.then((data) => {
 						this.masterDataUsers = data
 						this.users = data
+						this.masterList = 'user'
 						this.update()
-        })
+					})
+			}
     }
+
     this.on('mount', () => {
 			this.groupFilter=false
-			if(location.search.indexOf("group=")===1){
-				/// filtered by group also
-				this.groupFilter=true
+			this.masterList='user'
+			if(location.search.indexOf("group=true")===1){
+				/// listing is of groups
+				this.masterList='group'
+			} else {
+				/// user listing, filtered by group also
+				if(location.search.indexOf("group=filter")===1){
+					this.groupFilter=true
+				}
 			}
       this.fetchData()
     })
@@ -44,18 +63,32 @@
   <div class="main main-screen" id="main-section" data-topbar="scroll">
 		<div class="search-wrapper card">
 			<input id="search" placeholder="Search users ... " style="position: fixed;top: 20px;z-index: 11;background-color: lightgray;width: 82%;padding-left: 2%;left: 8%;" onkeyup={doFilter}></div>
-    <ul class="collection">
-			<li each={item in users}  class="collection-item avatar">
-	      <img src="{item.image}" alt="" class="circle">
-	      <section>{item.first} {item.last}</section>
-				<br>
-				<section class="secondary">
-					<div class="chip" each={group_id in item.groups}>
-				    {group_id}
-				    <i class="close material-icons">close</i>
-				  </div>
-				</section>
-	    </li>
-    </ul>
+	    <ul class="collection" if={masterList === 'user'}>
+				<li each={item in users}  class="collection-item avatar">
+		      <img src="{item.image}" alt="" class="circle">
+		      <section>{item.first} {item.last}</section>
+					<br>
+					<section class="secondary">
+						<div class="chip" each={group_id in item.groups}>
+					    {group_id}
+					    <i class="close material-icons">close</i>
+					  </div>
+					</section>
+		    </li>
+	    </ul>
+			<ul class="collection" if={masterList === 'group'}>
+				<li each={item in groups}  class="collection-item avatar">
+		      <img src="{item.image}" alt="" class="circle">
+		      <section>{item.name}</section>
+					<br>
+					<section class="secondary">
+						<div class="chip" each={group_id in item.groups}>
+					    {group_id}
+					    <i class="close material-icons">close</i>
+					  </div>
+					</section>
+		    </li>
+	    </ul>
+		</div>
   </div>
 </main>
